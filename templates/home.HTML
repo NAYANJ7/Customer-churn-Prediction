@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Churn Prediction Analysis</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { padding: 20px; background-color: #f8f9fa; }
+        .prediction-form { 
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .results-section { margin-top: 30px; display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">Customer Churn Prediction Analysis</h1>
+        
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="prediction-form">
+                    <form id="predictionForm">
+                        <!-- Numeric Inputs -->
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="query1" class="form-label">Monthly Charges ($)</label>
+                                <input type="number" class="form-control" id="query1" name="query1" required step="0.01">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="query2" class="form-label">Total Charges ($)</label>
+                                <input type="number" class="form-control" id="query2" name="query2" required step="0.01">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="query3" class="form-label">Tenure (months)</label>
+                                <input type="number" class="form-control" id="query3" name="query3" required>
+                            </div>
+                        </div>
+
+                        <!-- Customer Status -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="query4" class="form-label">Partner</label>
+                                <select class="form-select" id="query4" name="query4" required>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="query5" class="form-label">Dependents</label>
+                                <select class="form-select" id="query5" name="query5" required>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Services -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="query6" class="form-label">Internet Service</label>
+                                <select class="form-select" id="query6" name="query6" required>
+                                    <option value="DSL">DSL</option>
+                                    <option value="Fiber optic">Fiber optic</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="query7" class="form-label">Online Security</label>
+                                <select class="form-select" id="query7" name="query7" required>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="query8" class="form-label">Online Backup</label>
+                                <select class="form-select" id="query8" name="query8" required>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="query9" class="form-label">Device Protection</label>
+                                <select class="form-select" id="query9" name="query9" required>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="query10" class="form-label">Tech Support</label>
+                                <select class="form-select" id="query10" name="query10" required>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="query11" class="form-label">Streaming TV(user opted for TV services)</label>
+                                <select class="form-select" id="query11" name="query11" required>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="query12" class="form-label">Streaming Movies(user oped for movie services)</label>
+                                <select class="form-select" id="query12" name="query12" required>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Contract Information -->
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="query13" class="form-label">Contract Type</label>
+                                <select class="form-select" id="query13" name="query13" required>
+                                    <option value="Month-to-month">Month-to-month</option>
+                                    <option value="One year">One year</option>
+                                    <option value="Two year">Two year</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="query14" class="form-label">Paperless Billing</label>
+                                <select class="form-select" id="query14" name="query14" required>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="query15" class="form-label">Payment Method</label>
+                                <select class="form-select" id="query15" name="query15" required>
+                                    <option value="Electronic check">Electronic check</option>
+                                    <option value="Mailed check">Mailed check</option>
+                                    <option value="Bank transfer (automatic)">Bank transfer (automatic)</option>
+                                    <option value="Credit card (automatic)">Credit card (automatic)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Predict Churn</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Results Section -->
+                <div id="results" class="results-section">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="mb-0">Prediction Results</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4>Risk Assessment</h4>
+                                    <p id="prediction" class="h5"></p>
+                                    <p id="confidence" class="text-muted"></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4>Probabilities</h4>
+                                    <p id="churnProb"></p>
+                                    <p id="retentionProb"></p>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12">
+                                    <h4>Customer Metrics</h4>
+                                    <ul id="metrics" class="list-unstyled"></ul>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12">
+                                    <h4>Analysis</h4>
+                                    <ul id="factors" class="list-unstyled"></ul>
+                                    <p id="recommendation" class="mt-2"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#predictionForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                var formData = {};
+                $(this).serializeArray().forEach(function(item) {
+                    formData[item.name] = item.value;
+                });
+
+                $.ajax({
+                    url: '/predict',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(formData),
+                    success: function(response) {
+                        $('#prediction').text(response.prediction);
+                        $('#confidence').text('Confidence: ' + response.confidence);
+                        $('#churnProb').text('Churn Probability: ' + response.probabilities.churn);
+                        $('#retentionProb').text('Retention Probability: ' + response.probabilities.retention);
+                        
+                        $('#metrics').html(`
+                            <li>Monthly Charges: $${response.customer_metrics.monthly_charges.toFixed(2)}</li>
+                            <li>Total Charges: $${response.customer_metrics.total_charges.toFixed(2)}</li>
+                            <li>Contract Type: ${response.customer_metrics.contract_type}</li>
+                        `);
+
+                        $('#factors').html(
+                            response.analysis.primary_factors.map(factor => `<li>${factor}</li>`).join('')
+                        );
+                        $('#recommendation').text('Recommendation: ' + response.analysis.recommendation);
+
+                        $('#results').slideDown();
+                    },
+                    error: function(xhr) {
+                        alert('Error in prediction: ' + xhr.responseJSON.error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <title>Churn Prediction</title>
+    <div class="container">
+        <h1 class="text-center form-title">Churn Prediction Analysis</h1>
+        <form method="post">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="query1">Monthly Charges</label>
+                    <input type="text" class="form-control" id="query1" name="query1" value="{{ query1 }}">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="query2">Total Charges</label>
+                    <input type="text" class="form-control" id="query2" name="query2" value="{{ query2 }}">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="query3">Gender</label>
+                    <select class="form-control" id="query3" name="query3">
+                        <option value="Male" {% if query3 == "Male" %} selected {% endif %}>Male</option>
+                        <option value="Female" {% if query3 == "Female" %} selected {% endif %}>Female</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="query4">Partner</label>
+                    <select class="form-control" id="query4" name="query4">
+                        <option value="Yes" {% if query4 == "Yes" %} selected {% endif %}>Yes</option>
+                        <option value="No" {% if query4 == "No" %} selected {% endif %}>No</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="query5">Dependents</label>
+                    <select class="form-control" id="query5" name="query5">
+                        <option value="Yes" {% if query5 == "Yes" %} selected {% endif %}>Yes</option>
+                        <option value="No" {% if query5 == "No" %} selected {% endif %}>No</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="query6">Phone Service</label>
+                    <select class="form-control" id="query6" name="query6">
+                        <option value="Yes" {% if query6 == "Yes" %} selected {% endif %}>Yes</option>
+                        <option value="No" {% if query6 == "No" %}} selected {% endif %}>No</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="query7">Multiple Lines</label>
+                    <select class="form-control" id="query7" name="query7">
+                        <option value="Yes" {% if query7 == "Yes" %} selected {% endif %}>Yes</option>
+                        <option value="No" {% if query7 == "No" %} selected {% endif %}>No</option>
+                        <option value="No phone service" {% if query7 == "No phone service" %} selected {% endif %}>No phone service</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="query8">Internet Service</label>
+                    <select class="form-control" id="query8" name="query8">
+                        <option value="DSL" {% if query8 == "DSL" %} selected {% endif %}>DSL</option>
+                        <option value="Fiber optic" {% if query8 == "Fiber optic" %} selected {% endif %}>Fiber optic</option>
+                        <option value="No" {% if query8 == "No" %} selected {% endif %}>No</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="query9">Online Security</label>
+                    <select class="form-control" id="query9" name="query9">
+                        <option value="Yes" {% if query9 == "Yes" %} selected {% endif %}>Yes</option>
+                        <option value="No" {% if query9 == "No" %} selected {% endif %}>No</option>
+                        <option value="No internet service" {% if query9 == "No internet service" %} selected {% endif %}>No internet service</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="query10">Online Backup</label>
+                    <select class="form-control" id="query10" name="query10">
+                        <option value="Yes" {% if query10 == "Yes" %} selected {% endif %}>Yes</option>
+                        <option value="No" {% if query10 == "No" %} selected {% endif %}>No</option>
+                        <option value="No internet service" {% if query10 == "No internet service" %} selected {% endif %}>No internet service</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="query11">Device Protection</label>
+                    <select class="form-control" id="query11" name="query11">
+                        <option value="Yes" {% if query11 == "Yes" %} selected {% endif %}>Yes</option>
+                        <option value="No" {% if query11 == "No" %} selected {% endif %}>No</option>
+                        <option value="No internet service" {% if query11 == "No internet service" %} selected {% endif %}>No internet service</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="query12">Tech Support</label>
+                    <select class="form-control" id="query12" name="query12">
+                        <option value="Yes" {% if query12 == "Yes" %} selected {% endif %}>Yes</option>
+                        <option value="No" {% if query12 == "No" %} selected {% endif %}>No</option>
+                        <option value="No internet service" {% if query12 == "No internet service" %} selected {% endif %}>No internet service</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="query13">Streaming TV</label>
+                    <select class="form-control" id="query13" name="query13">
+                        <option value="Yes" {% if query13 == "Yes" %} selected {% endif %}>Yes</option>
+                        <option value="No" {% if query13 == "No" %} selected {% endif %}>No</option>
+                        <option value="No internet service" {% if query13 == "No internet service" %} selected {% endif %}>No internet service</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="query14">Streaming Movies</label>
+                    <select class="form-control" id="query14" name="query14">
+                        <option value="Yes" {% if query14 == "Yes" %} selected {% endif %}>Yes</option>
+                        <option value="No" {% if query14 == "No" %} selected {% endif %}>No</option>
+                        <option value="No internet service" {% if query14 == "No internet service" %} selected {% endif %}>No internet service</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="query15">Contract</label>
+                    <select class="form-control" id="query15" name="query15">
+                        <option value="Month-to-month" {% if query15 == "Month-to-month" %} selected {% endif %}>Month-to-month</option>
+                        <option value="One year" {% if query15 == "One year" %} selected {% endif %}>One year</option>
+                        <option value="Two year" {% if query15 == "Two year" %} selected {% endif %}>Two year</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="query16">Paperless Billing</label>
+                    <select class="form-control" id="query16" name="query16">
+                        <option value="Yes" {% if query16 == "Yes" %} selected {% endif %}>Yes</option>
+                        <option value="No" {% if query16 == "No" %} selected {% endif %}>No</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="query17">Payment Method</label>
+                    <select class="form-control" id="query17" name="query17">
+                        <option value="Electronic check" {% if query17 == "Electronic check" %} selected {% endif %}>Electronic check</option>
+                        <option value="Mailed check" {% if query17 == "Mailed check" %} selected {% endif %}>Mailed check</option>
+                        <option value="Bank transfer (automatic)" {% if query17 == "Bank transfer (automatic)" %} selected {% endif %}>Bank transfer (automatic)</option>
+                        <option value="Credit card (automatic)" {% if query17 == "Credit card (automatic)" %} selected {% endif %}>Credit card (automatic)</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="query18">Tenure</label>
+                    <input type="text" class="form-control" id="query18" name="query18" value="{{ query18 }}">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Predict</button>
+        </form>
+        
+      <div class="row"> 
+          <div class="col-sm-9">
+          <textarea class="form-control" rows="2" id="comment" name="query6" rows="2" cols="5" autofocus>{{output1}}</textarea>
+          <textarea class="form-control" rows="2" id="comment" name="query7" rows="2" cols="5" autofocus>{{output2}}</textarea>
+          </div>
+      </div>
+  </div>	
+</body>
+</html>
