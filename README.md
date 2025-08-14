@@ -40,7 +40,7 @@ Machine Learning: Scikit-learn, XGBoost (or Logistic Regression, Random Forest, 
 Notebook Environment: Jupyter(VScode)
 
 📈 Project Workflow
-Data Loading & Cleaning
+1.Data Loading & Cleaning
 
 Handle missing values
 
@@ -48,7 +48,7 @@ Convert data types (e.g., TotalCharges to numeric)
 
 Encode categorical variables
 
-Exploratory Data Analysis (EDA)
+2.Exploratory Data Analysis (EDA)
 
 Visualize churn distribution
 
@@ -56,7 +56,7 @@ Compare churn vs non-churn customer metrics
 
 Correlation heatmaps, box plots, count plots
 
-Feature Engineering
+3.Feature Engineering
 
 Create new features from existing data
 
@@ -64,7 +64,7 @@ Normalize/scale values
 
 One-hot encoding for categorical variables
 
-Model Building & Evaluation
+3.Model Building & Evaluation
 
 Train/test split
 
@@ -72,7 +72,7 @@ Model selection: Logistic Regression, Random Forest, XGBoost
 
 Evaluate using accuracy, precision, recall, F1-score, AUC-ROC
 
-Insights & Recommendations
+4.Insights & Recommendations
 
 Key drivers of churn
 
