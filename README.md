@@ -93,3 +93,8 @@ Offer incentives for long-term contracts.
 Improve service quality for high-churn segments.
 
 Target at-risk customers with personalized retention campaigns.
+
+Clone the repository:
+https://github.com/NAYANJ7/Customer-churn-Prediction.git
+
+
